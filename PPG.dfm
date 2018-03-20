@@ -3117,7 +3117,6 @@ object MainForm: TMainForm
       Width = 105
       Height = 24
       Caption = 'Checker Key'
-      Enabled = False
       TabOrder = 1
       TabStop = False
       OnClick = CheckKeyBtnClick

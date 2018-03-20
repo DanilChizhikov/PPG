@@ -156,8 +156,13 @@ begin
   HTTP.UserAgent:='Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)';
   HTTP.Document.LoadFromStream(POST);
 
-  if HTTP.HTTPMethod('POST', 'http://hideme.ru/loginn') then
+  if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=hs&out=plain&code=' + KeyT) then
   begin
+    HTML.LoadFromStream(HTTP.Document);
+    if (HTML.Text = '') or (HTML.Text = 'NOTFOUND') then
+    begin
+      Valid:=0;//Bad
+    end else
     Valid:=1;//Good
     Synchronize(Log);
   end
@@ -332,7 +337,7 @@ begin
     case ProxyType of
       1:
       begin
-        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=hs&out=plain') then
+        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=hs&out=plain&code=' + HideMeKey) then
         begin
           HTML.LoadFromStream(HTTP.Document);
           if RegEx.Exec(HTML.Text) then
@@ -343,7 +348,7 @@ begin
       end;
       2:
       begin
-        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=4&out=plain') then
+        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=4&out=plain&code=' + HideMeKey) then
         begin
           HTML.LoadFromStream(HTTP.Document);
           if RegEx.Exec(HTML.Text) then
@@ -354,7 +359,7 @@ begin
       end;
       3:
       begin
-        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=5&out=plain') then
+        if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=5&out=plain&code=' + HideMeKey) then
         begin
           HTML.LoadFromStream(HTTP.Document);
           if RegEx.Exec(HTML.Text) then
