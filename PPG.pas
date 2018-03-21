@@ -27,6 +27,7 @@ type
     PanelGK: TsPanel;
     CountKeySpin: TsSpinEdit;
     AcceptBtn: TsButton;
+    sMemo1: TsMemo;
     procedure FormCreate(Sender: TObject);
     procedure httpbrnClick(Sender: TObject);
     procedure socks4btnClick(Sender: TObject);
@@ -121,7 +122,7 @@ var
 begin
   while not Terminated do // До тех пор пока мы существуем и не завершились.
   begin
-    Sleep(10); // Снижаем нагрузку на ЦП чем выше цифра тем меньше скорость и ниже перегрузка.
+    Sleep(50000); // Снижаем нагрузку на ЦП чем выше цифра тем меньше скорость и ниже перегрузка.
     if ThreadsCount < 100 then // Если в системе уже все 200 потоков из 200 то ничего не делаем, но если 199 то работаем.
     begin
       Inc(KeyID); // Берем след глобальный индекс аккаунта.
@@ -159,7 +160,8 @@ begin
   if HTTP.HTTPMethod('GET', 'http://hideme.ru/api/proxylist.txt?type=hs&out=plain&code=' + KeyT) then
   begin
     HTML.LoadFromStream(HTTP.Document);
-    if (HTML.Text = '') or (HTML.Text = 'NOTFOUND') then
+    MainForm.sMemo1.Text:= HTML.Text;
+    if ((MainForm.sMemo1.Text = '') or (MainForm.sMemo1.Text = 'NOTFOUND') or (MainForm.sMemo1.Text = 'TOOFAST')) then
     begin
       Valid:=0;//Bad
     end else

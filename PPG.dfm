@@ -6,7 +6,7 @@ object MainForm: TMainForm
   AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
-  Caption = 'HidmeME Proxy Grabber'
+  Caption = 'HideMe Proxy Grabber'
   ClientHeight = 257
   ClientWidth = 385
   Color = clBtnFace
@@ -3240,6 +3240,21 @@ object MainForm: TMainForm
     TabStop = False
     OnClick = dbtnClick
     ShowFocus = False
+  end
+  object sMemo1: TsMemo
+    Left = 8
+    Top = 8
+    Width = 369
+    Height = 241
+    Color = 3682598
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 16772838
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    Visible = False
   end
   object sSkinManager1: TsSkinManager
     InternalSkins = <
